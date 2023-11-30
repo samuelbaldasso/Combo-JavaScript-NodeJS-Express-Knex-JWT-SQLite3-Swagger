@@ -1,4 +1,5 @@
-const {knex} = require("knex");
+const knex = require('knex')(require('../knexfile').development);
+
 exports.orders = async (req, res) => {
     const { dishes, total } = req.body;
     const userId = req.user.userId;

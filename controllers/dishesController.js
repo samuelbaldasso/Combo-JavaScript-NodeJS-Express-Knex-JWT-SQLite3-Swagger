@@ -1,5 +1,5 @@
 const authorize = require("../middlewares/authorize");
-const {knex} = require("knex");
+const knex = require('knex')(require('../knexfile').development);
 
 exports.dishes = async (req, res) => {
     try {

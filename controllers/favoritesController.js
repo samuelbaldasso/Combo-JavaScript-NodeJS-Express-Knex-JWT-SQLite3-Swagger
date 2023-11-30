@@ -1,5 +1,5 @@
 const authenticateToken = require("../middlewares/authenticationToken");
-const {knex} = require("knex");
+const knex = require('knex')(require('../knexfile').development);
 
 exports.postFavorites = async (req, res) => {
     const { dishId } = req.body;

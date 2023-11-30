@@ -1,17 +1,17 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const {knex} = require("knex");
+const knex = require('knex')(require('../knexfile').development);
 
 exports.register = async (req, res) => {
-    const { username, password, role } = req.body;
+    const { username, password, email } = req.body;
 
-    if (!['admin', 'user'].includes(role)) {
-        return res.status(400).json({ message: "Role must be 'admin' or 'user'" });
-    }
+    // if (!['admin', 'user'].includes(role)) {
+    //     return res.status(400).json({ message: "Role must be 'admin' or 'user'" });
+    // }
 
-    const existingUsers = await knex('users').where({ username }).select();
+    const existingUsers = await knex('users').where({ email }).select();
     if (existingUsers.length > 0) {
-        return res.status(409).json({ message: "Username already taken" });
+        return res.status(409).json({ message: "Email already taken" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -20,10 +20,10 @@ exports.register = async (req, res) => {
         const user = await knex('users').insert({
             username,
             password: hashedPassword,
-            role
+            email
         });
 
-        res.status(201).json({ id: user[0], role });
+        res.status(201).json({ id: user[0] });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Could not register user" });
@@ -31,10 +31,10 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-        const users = await knex('users').where({ username });
+        const users = await knex('users').where({ email });
         if (users.length === 0) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
@@ -45,7 +45,7 @@ exports.login = async (req, res) => {
         if (match) {
             const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
             console.log(token);
-            res.json({ token, role: user.role });
+            res.json({ token });
         } else {
             res.status(401).json({ message: "Invalid credentials" });
         }
