@@ -23,7 +23,15 @@ const imageFilter = (req, file, cb) => {
 const upload = multer({ storage: storage, fileFilter: imageFilter });
 
 const router = express.Router();
-
+/**
+ * @swagger
+ * /photo/upload:
+ *   post:
+ *     summary: Retorna a adição de uma imagem do prato no sistema
+ *     responses:
+ *       200:
+ *         description: Adição de imagem do prato bem sucedida
+ */
 router.post('/upload', upload.single('image'), uploadController.uploadImage);
 
 module.exports = router;
