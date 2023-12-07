@@ -1,6 +1,6 @@
 # Backend para Restaurantes com Autenticação JWT e Autorização por Roles
 
-Este projeto é um backend para um sistema de restaurantes. Ele oferece funcionalidades como autenticação e autorização de usuários, utilizando tokens JWT (JSON Web Tokens) e um sistema de roles. O backend é construído em Node.js, com o uso do KnexJS / Sequelize para interagir com o banco de dados SQLite.
+Este projeto é um backend para um sistema de restaurantes. Ele oferece funcionalidades como autenticação e autorização de usuários, utilizando tokens JWT (JSON Web Tokens) e um sistema de roles. O backend é construído em Node.js, com o uso do KnexJS para interagir com o banco de dados SQLite.
 
 ## Recursos
 
@@ -12,7 +12,7 @@ Este projeto é um backend para um sistema de restaurantes. Ele oferece funciona
 
 - **Node.js**: Ambiente de execução do servidor.
 - **Express.js**: Framework para o servidor Node.js.
-- **KnexJS / Sequelize**: Construtor de consultas SQL para interagir com o banco de dados SQLite.
+- **KnexJS**: Construtor de consultas SQL para interagir com o banco de dados SQLite.
 - **SQLite**: Banco de dados leve e eficiente para armazenar os dados dos usuários e informações do restaurante.
 - **JWT (JSON Web Tokens)**: Utilizado para a autenticação e autorização de usuários com base em roles.
 
