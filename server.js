@@ -25,12 +25,14 @@ const dishesRoutes = require('./routes/dishesRouter');
 const photoRoutes = require('./routes/uploadImageRouter');
 const favoriteRoutes = require('./routes/favoritesRouter');
 const orderRoutes = require('./routes/orderRouter');
+const userRoutes = require('./routes/userRoutes');
 
 app.use('/auth', authRoutes);
 app.use('/dishes', dishesRoutes);
 app.use('/photo', photoRoutes);
 app.use('/favorite', favoriteRoutes);
 app.use('/order', orderRoutes);
+app.use('/user', userRoutes);
 
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {

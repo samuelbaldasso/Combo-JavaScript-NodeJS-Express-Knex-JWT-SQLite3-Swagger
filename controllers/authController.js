@@ -3,11 +3,11 @@ const jwt = require("jsonwebtoken");
 const knex = require('knex')(require('../knexfile').development);
 
 exports.register = async (req, res) => {
-    const { username, password, email } = req.body;
+    const { username, password, email, role } = req.body;
 
-    // if (!['admin', 'user'].includes(role)) {
-    //     return res.status(400).json({ message: "Role must be 'admin' or 'user'" });
-    // }
+    if (!['admin', 'user'].includes(role)) {
+        return res.status(400).json({ message: "Role must be 'admin' or 'user'" });
+    }
 
     const existingUsers = await knex('users').where({ email }).select();
     if (existingUsers.length > 0) {
@@ -20,7 +20,8 @@ exports.register = async (req, res) => {
         const user = await knex('users').insert({
             username,
             password: hashedPassword,
-            email
+            email,
+            role
         });
 
         res.status(201).json({ id: user[0] });
@@ -34,7 +35,7 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const users = await knex('users').where({ email });
+        const users = await knex('users').where({ email }).select();
         if (users.length === 0) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
