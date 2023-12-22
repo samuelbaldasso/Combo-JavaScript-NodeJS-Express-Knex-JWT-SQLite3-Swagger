@@ -20,20 +20,10 @@ Este projeto é um backend para um sistema de restaurantes. Ele oferece funciona
 
 A documentação completa das API's está disponível no endpoint `/api-docs`. A documentação é interativa e permite testar os endpoints diretamente pela interface do Swagger.
 
-## Instruções de Instalação e Uso
-
-1. Clone o repositório: git clone [URL_DO_REPOSITORIO]
-
-2. Navegue até a pasta do projeto e instale as dependências: cd [NOME_DA_PASTA_DO_PROJETO] e depois rodar o comando npm install
-
-3. Inicie o servidor: nodemon server.js
-
-4. Acesse `http://localhost:3001/api-docs` em seu navegador para visualizar a documentação da API.
-
 ---
 
 Desenvolvido com ❤️ por Samuel Baldasso
 
-PS: Se preferir, o projeto estará também em ambiente de produção no link abaixo:
+PS: O projeto estará também em ambiente de produção no link abaixo:
 
 https://food-explorer-nodejs.onrender.com
