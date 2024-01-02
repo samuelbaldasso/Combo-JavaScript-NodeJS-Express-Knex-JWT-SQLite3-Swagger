@@ -1,5 +1,5 @@
-const express = require('express');
-const userController = require('../controllers/usersController');
+const express = require("express");
+const userController = require("../controllers/usersController");
 
 const router = express.Router();
 /**
@@ -11,17 +11,17 @@ const router = express.Router();
  *       200:
  *         description: Listagem de usuários bem sucedida
  */
-router.get('/user', userController.getUser);
+router.get("/user", userController.getUser);
 /**
  * @swagger
- * /user/user:
+ * /user/user/:id:
  *   put:
  *     summary: Retorna a atualização dos dados de um usuário
  *     responses:
  *       200:
  *         description: Atualização de usuário bem sucedida
  */
-router.put('/user', userController.updateUser);
+router.put("/user/:id", userController.updateUser);
 /**
  * @swagger
  * /user/user/:id:
@@ -31,7 +31,7 @@ router.put('/user', userController.updateUser);
  *       200:
  *         description: Exclusão de usuário bem sucedida
  */
-router.delete('/user/:id', userController.deleteUser);
+router.delete("/user/:id", userController.deleteUser);
 /**
  * @swagger
  * /user/user/:id:
@@ -41,6 +41,6 @@ router.delete('/user/:id', userController.deleteUser);
  *       200:
  *         description: Busca por usuário bem sucedida
  */
-router.get('/user/:id', userController.getUserById);
+router.get("/user/:id", userController.getUserById);
 
 module.exports = router;

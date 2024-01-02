@@ -1,6 +1,7 @@
-const express = require('express');
-const dishesController = require('../controllers/dishesController');
+const express = require("express");
+const dishesController = require("../controllers/dishesController");
 const authorize = require("../middlewares/authorize");
+const authenticateToken = require("../middlewares/authenticationToken");
 
 const router = express.Router();
 /**
@@ -12,7 +13,7 @@ const router = express.Router();
  *       200:
  *         description: Listagem de pratos bem sucedida
  */
-router.get('/dishes', dishesController.dishes);
+router.get("/dishes", authenticateToken, dishesController.dishes);
 /**
  * @swagger
  * /dishes/dishes:
@@ -22,6 +23,6 @@ router.get('/dishes', dishesController.dishes);
  *       200:
  *         description: Cadastro de prato bem sucedido
  */
-router.post('/dishes', authorize('admin'), dishesController.postDishes);
+router.post("/dishes", authenticateToken, dishesController.postDishes);
 
 module.exports = router;
